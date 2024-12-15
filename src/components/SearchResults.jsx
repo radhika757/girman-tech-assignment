@@ -1,9 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 import profile from "../../public/profile.jpg";
 import Image from "next/image";
+// import DialogDetails from "./Dialog";
+
+import dynamic from 'next/dynamic';
+
+const DialogDetails = dynamic(() => import('./Dialog'), {
+    ssr: false, // This ensures it's only rendered on the client side
+  });
 
 const SearchResults = () => {
+    const [showDialog, setShowDialog] = useState(false);
+
+    const handleFetchDetailsClick = () => {
+      setShowDialog(true); // Show the dialog
+    };
+  
+    const handleDialogClose = () => {
+      setShowDialog(false); // Hide the dialog
+    }
   const data = [
     { name: "John Doe", location: "New York, USA", phone: "+1 123-456-7890" },
     { name: "Jane Smith", location: "London, UK", phone: "+44 20 7946 0958" },
@@ -62,13 +78,14 @@ const SearchResults = () => {
                 <span className="text-[11.5px] text-[#AFAFAF]">Available on phone</span>
               </div>
 
-              <button className="px-4 py-2 bg-[#18181B] text-white text-sm rounded-lg">
+              <button className="px-4 py-2 bg-[#18181B] text-white text-sm rounded-lg" onClick={handleFetchDetailsClick}>
                 Fetch Details
               </button>
             </div>
           </div>
         ))}
       </div>
+      {showDialog && <DialogDetails onClose={handleDialogClose} />}
     </div>
   );
 };
