@@ -30,7 +30,7 @@ export default function Home() {
       }
       setIsLoading(true);
       setIsSearching(true);
-    
+
       try {
         const res = await fetch(`/api/search?search=${debouncedSearchQuery}`);
         const data = await res.json();
@@ -43,7 +43,7 @@ export default function Home() {
       } catch (error) {
         console.error("Error fetching search results:", error);
         setResults([]);
-      } finally{
+      } finally {
         setIsLoading(false);
       }
     };
@@ -61,19 +61,25 @@ export default function Home() {
       <Navbar />
       {/* Content */}
       <div
-        className={`flex flex-col items-center ${isSearching ? '' : 'gap-20'} transition-all duration-300 ${isSearching ? "mt-[120px]" : "mt-auto justify-center h-screen"
+        className={`flex flex-col items-center ${isSearching ? '' : 'gap-32'} transition-all duration-300 ${isSearching ? "mt-[100px]" : "mt-auto sm:justify-center justify-start h-screen"
           }`}
         style={{ height: isSearching ? "auto" : "calc(100vh - 110px)" }}
       >
         {!isSearching && (
-          <div className="flex items-center justify-start gap-10 w-[800px]">
+          <div className="flex items-center justify-start gap-10 w-[400px] sm:w-[800px]">
             <Image
               src={logo2}
               alt="Centered Logo"
-              className="w-[187px] h-[125px] mb-4"
+              className="w-[100px] h-[70px] mb-4 sm:w-[187px] sm:h-[125px] sm:block hidden"
             />
-            <Image src={girman} alt="girman" />
+
+            <Image
+              src={girman}
+              alt="girman"
+              className="sm:block hidden"
+            />
           </div>
+
         )}
 
         <SearchBar isSearching={isSearching} handleSearch={(e) => setSearchQuery(e.target.value)} />

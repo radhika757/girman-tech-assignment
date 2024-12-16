@@ -43,17 +43,17 @@ const SearchResults = ({ results, isLoading }) => {
           results.map((item, index) => (
             <div
               key={index}
-              className="w-[390px] h-[312px] rounded-[18px] p-[28px] bg-[#FFFFFF] shadow-md flex flex-col items-start"
+              className="w-[312px] sm:w-[390px] sm:h-[312px] h-[236px] rounded-[18px] sm:p-[28px] p-[18px] bg-[#FFFFFF] shadow-md flex flex-col items-start"
             >
-              <div className="flex gap-4 mb-4 flex-col items-start">
+              <div className="flex gap-4 mb-2 sm:mb-4 flex-col items-start">
                 <Image
                   src={profile}
                   alt={`${item.name}'s profile`}
-                  className="w-20 h-20 rounded-full object-cover"
+                  className="sm:w-20 sm:h-20 w-16 h-16 rounded-full object-cover"
                 />
 
                 <div className="gap-2">
-                  <h2 className="text-[37px] font-semibold">
+                  <h2 className="text-[20px] sm:text-[37px] font-semibold">
                     {item.first_name} {item.last_name}
                   </h2>
                   <div className="flex flex-row items-center gap-2">
@@ -84,7 +84,7 @@ const SearchResults = ({ results, isLoading }) => {
                 </div>
 
                 <button
-                  className="w-[137px] h-11 px-4 py-2 bg-[#18181B] text-white text-sm rounded-lg"
+                  className="w-[120px] sm:w-[137px] h-11 px-4 py-2 bg-[#18181B] text-white text-sm rounded-lg"
                   onClick={() => handleFetchDetailsClick(item)}
                 >
                   Fetch Details
@@ -98,7 +98,7 @@ const SearchResults = ({ results, isLoading }) => {
       </div>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
         <DialogContent
-          className="w-[512px] h-[475px] bg-white rounded-lg p-6 shadow-lg flex flex-col justify-between"
+          className="w-[299px] sm:w-[512px] h-[447px] sm:h-[475px] bg-white rounded-lg p-6 shadow-lg flex flex-col justify-between"
           style={{
             boxShadow: `
         0px 4px 6px -2px #0000000D,
@@ -108,11 +108,11 @@ const SearchResults = ({ results, isLoading }) => {
         >
           <div>
             {/* Header */}
-            <DialogHeader className="mb-4 h-14 w-[424px]">
-              <DialogTitle className="text-lg font-bold">
+            <DialogHeader className="mb-4 h-14 sm:w-[424px] text-left">
+              <DialogTitle className="text-lg">
                 Fetch Details
               </DialogTitle>
-              <DialogDescription className="text-sm text-gray-500">
+              <DialogDescription className="text-xs text-gray-500">
                 Here are the details of the following employee.
               </DialogDescription>
             </DialogHeader>
@@ -137,7 +137,7 @@ const SearchResults = ({ results, isLoading }) => {
                 <Image
                   src={profile}
                   alt="Profile"
-                  className="w-[207px] h-[207px]"
+                  className="sm:w-[207px] sm:h-[207px] w-[192px] h-[192px]"
                 />
               </div>
             </div>
