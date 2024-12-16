@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
 
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
 
 export function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
@@ -15,6 +21,5 @@ export function useDebounce(value, delay) {
   }, [value, delay]);
 
   return debouncedValue;
+
 }
-
-
