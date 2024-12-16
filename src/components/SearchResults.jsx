@@ -15,7 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-const SearchResults = ({ results }) => {
+const SearchResults = ({ results, isLoading }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
 
@@ -25,8 +25,9 @@ const SearchResults = ({ results }) => {
       location: employee.city,
       contact_number: employee.contact_number,
     });
-    setIsDialogOpen(true); 
+    setIsDialogOpen(true);
   };
+
   return (
     <div
       className={`flex gap-10 w-[400px] sm:w-[800px] ${
@@ -34,7 +35,11 @@ const SearchResults = ({ results }) => {
       }`}
     >
       <div className="mt-10 flex flex-wrap justify-center gap-[11.5px]">
-        {results.length > 0 ? (
+        {isLoading ? (
+          <div className="flex justify-center items-center w-full h-[312px]">
+            Loading...
+          </div>
+        ) : results.length > 0 ? (
           results.map((item, index) => (
             <div
               key={index}
@@ -114,12 +119,11 @@ const SearchResults = ({ results }) => {
 
             <div>
               <p className="text-sm">
-                <span>Name:</span>{" "}
-                {selectedEmployee?.name || "N/A"}
+                <span>Name:</span> {selectedEmployee?.name || "N/A"}
               </p>
               <p className="text-sm">
-                <span>Location:</span>{" "}
-                {selectedEmployee?.city || "N/A"}
+                <span>Location:</span>
+                {selectedEmployee?.location || "N/A"}
               </p>
               <p className="text-sm">
                 <span>Contact Number:</span>{" "}

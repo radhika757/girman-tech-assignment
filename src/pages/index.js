@@ -17,6 +17,7 @@ export default function Home() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [results, setResults] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const debouncedSearchQuery = useDebounce(searchQuery, 1000);
 
@@ -27,7 +28,7 @@ export default function Home() {
         setResults([]);
         return;
       }
-
+      setIsLoading(true);
       setIsSearching(true);
     
       try {
@@ -42,6 +43,8 @@ export default function Home() {
       } catch (error) {
         console.error("Error fetching search results:", error);
         setResults([]);
+      } finally{
+        setIsLoading(false);
       }
     };
 
@@ -76,7 +79,7 @@ export default function Home() {
         <SearchBar isSearching={isSearching} handleSearch={(e) => setSearchQuery(e.target.value)} />
 
         {isSearching && (
-          <SearchResults results={results} />
+          <SearchResults results={results} isLoading={isLoading} />
         )}
       </div>
     </div>
