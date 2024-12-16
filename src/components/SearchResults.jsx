@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 import empty from "../../public/empty.png";
@@ -6,9 +6,33 @@ import profile from "../../public/profile.jpg";
 import location from "../../public/location.png";
 import phone from "../../public/phone.png";
 
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
 const SearchResults = ({ results }) => {
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+
+  const handleFetchDetailsClick = (employee) => {
+    setSelectedEmployee({
+      name: `${employee.first_name} ${employee.last_name}`,
+      location: employee.city,
+      contact_number: employee.contact_number,
+    });
+    setIsDialogOpen(true); 
+  };
   return (
-    <div className={`flex gap-10 w-[400px] sm:w-[800px] ${results.length === 0 ? 'justify-center' : ''}`}>
+    <div
+      className={`flex gap-10 w-[400px] sm:w-[800px] ${
+        results.length === 0 ? "justify-center" : ""
+      }`}
+    >
       <div className="mt-10 flex flex-wrap justify-center gap-[11.5px]">
         {results.length > 0 ? (
           results.map((item, index) => (
@@ -54,7 +78,10 @@ const SearchResults = ({ results }) => {
                   </span>
                 </div>
 
-                <button className="w-[137px] h-11 px-4 py-2 bg-[#18181B] text-white text-sm rounded-lg">
+                <button
+                  className="w-[137px] h-11 px-4 py-2 bg-[#18181B] text-white text-sm rounded-lg"
+                  onClick={() => handleFetchDetailsClick(item)}
+                >
                   Fetch Details
                 </button>
               </div>
@@ -64,6 +91,64 @@ const SearchResults = ({ results }) => {
           <Image src={empty} alt="No Result" />
         )}
       </div>
+      <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <DialogContent
+          className="w-[512px] h-[475px] bg-white rounded-lg p-6 shadow-lg flex flex-col justify-between"
+          style={{
+            boxShadow: `
+        0px 4px 6px -2px #0000000D,
+        0px 10px 15px -3px #0000001A
+      `,
+          }}
+        >
+          <div>
+            {/* Header */}
+            <DialogHeader className="mb-4 h-14 w-[424px]">
+              <DialogTitle className="text-lg font-bold">
+                Fetch Details
+              </DialogTitle>
+              <DialogDescription className="text-sm text-gray-500">
+                Here are the details of the following employee.
+              </DialogDescription>
+            </DialogHeader>
+
+            <div>
+              <p className="text-sm">
+                <span>Name:</span>{" "}
+                {selectedEmployee?.name || "N/A"}
+              </p>
+              <p className="text-sm">
+                <span>Location:</span>{" "}
+                {selectedEmployee?.city || "N/A"}
+              </p>
+              <p className="text-sm">
+                <span>Contact Number:</span>{" "}
+                {selectedEmployee?.contact_number || "N/A"}
+              </p>
+            </div>
+
+            <div className="mt-2">
+              <p className="text-sm mb-2">Profile Image:</p>
+              <div className="overflow-hidden">
+                <Image
+                  src={profile}
+                  alt="Profile"
+                  className="w-[207px] h-[207px]"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex justify-end">
+            <button
+              className="px-4 py-2 bg-[#FFFFFF] text-black text-sm rounded-md border border-zinc-200"
+              onClick={() => setIsDialogOpen(false)}
+            >
+              Close
+            </button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
