@@ -1,12 +1,16 @@
+import { useEffect, useState } from "react";
+import Head from "next/head";
+import Image from "next/image";
+
+import { useDebounce } from "@/lib/utils";
+import SearchResults from "@/components/SearchResults";
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
-import Image from "next/image";
-import { useEffect, useState } from "react";
 
 import girman from "../../public/girman.png";
 import logo2 from "../../public/logo2.png";
-import SearchResults from "@/components/SearchResults";
-import { useDebounce } from "@/lib/utils";
+
+
 
 
 export default function Home() {
@@ -50,6 +54,11 @@ export default function Home() {
 
   return (
     <div>
+      <Head>
+        <title>Girman Tech</title>
+        <meta name="description" content="Girman Technologies" />
+      </Head>
+
       <Navbar />
       {/* Content */}
       <div
