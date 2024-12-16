@@ -1,5 +1,6 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+
 import search from "../../public/search.png";
 
 const SearchBar = ({ isSearching, handleSearch }) => {
