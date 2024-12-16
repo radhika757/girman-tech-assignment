@@ -7,4 +7,4 @@ const UserSchema = new mongoose.Schema({
     contact_number: { type: String, required: true, unique: true },
 }, { timestamps: true });
 
-export default mongoose.models.User || mongoose.model('User', UserSchema);
+export default mongoose.models.User || mongoose.model('User', UserSchema, 'users');
