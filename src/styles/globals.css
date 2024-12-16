@@ -17,6 +17,13 @@ body {
   position: relative;
 }
 
+@media (max-width: 640px) {
+  body {
+    background: linear-gradient(180deg, #FFFFFF 31%, #B1CBFF 100%); 
+    background-repeat: no-repeat;
+  }
+}
+
 @layer base {
   :root {
     --radius: 0.5rem;
