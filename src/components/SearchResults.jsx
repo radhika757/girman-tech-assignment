@@ -8,7 +8,7 @@ import phone from "../../public/phone.png";
 
 const SearchResults = ({ results }) => {
   return (
-    <div className={`flex gap-10 w-[800px] ${results.length > 0 ? 'justify-center' : ''}`}>
+    <div className={`flex gap-10 w-[400px] sm:w-[800px] ${results.length === 0 ? 'justify-center' : ''}`}>
       <div className="mt-10 flex flex-wrap justify-center gap-[11.5px]">
         {results.length > 0 ? (
           results.map((item, index) => (

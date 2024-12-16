@@ -16,7 +16,6 @@ import logo2 from "../../public/logo2.png";
 export default function Home() {
   const [isSearching, setIsSearching] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
 
   const debouncedSearchQuery = useDebounce(searchQuery, 1000);
@@ -30,8 +29,7 @@ export default function Home() {
       }
 
       setIsSearching(true);
-      setLoading(true);
-
+    
       try {
         const res = await fetch(`/api/search?search=${debouncedSearchQuery}`);
         const data = await res.json();
@@ -44,8 +42,6 @@ export default function Home() {
       } catch (error) {
         console.error("Error fetching search results:", error);
         setResults([]);
-      } finally {
-        setLoading(false);
       }
     };
 

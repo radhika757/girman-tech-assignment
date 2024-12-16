@@ -14,9 +14,7 @@ const Navbar = () => {
   return (
     <nav className="w-full h-[110px] bg-white fixed top-0 left-0 opacity-100 shadow-custom">
       <div className="w-full max-w-[1000px] flex justify-between items-center mx-auto px-5 md:px-10 h-full">
-        {/* Logo Section */}
         <div className="flex items-center justify-start gap-2 hidden md:flex">
-          {/* Logos visible only on medium and larger screens */}
           <Image src={logo} alt="Logo" className="h-16 w-16" />
           <Image src={text} alt="Text Logo" className="h-14 w-[146px]" />
         </div>
