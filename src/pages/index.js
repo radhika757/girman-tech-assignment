@@ -1,11 +1,12 @@
 import Navbar from "@/components/Navbar";
 import SearchBar from "@/components/SearchBar";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import girman from "../../public/girman.png";
 import logo2 from "../../public/logo2.png";
 import SearchResults from "@/components/SearchResults";
+import { useDebounce } from "@/lib/utils";
 
 
 export default function Home() {
@@ -14,35 +15,38 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState([]);
 
-  const handleSearch = async (e) => {
-    const query = e.target.value;
-    setSearchQuery(query);
+  const debouncedSearchQuery = useDebounce(searchQuery, 1000);
 
-    if (query.trim() === "") {
-      setIsSearching(false);
-      setResults([]);
-      return;
-    }
-
-    setIsSearching(true);
-    setLoading(true);
-
-    try {
-      const res = await fetch(`/api/search?search=${query}`);
-      const data = await res.json();
-
-      if (data.success) {
-        setResults(data.data);
-      } else {
+  useEffect(() => {
+    const fetchResults = async () => {
+      if (!debouncedSearchQuery.trim()) {
+        setIsSearching(false);
         setResults([]);
+        return;
       }
-    } catch (error) {
-      console.error("Error fetching search results:", error);
-      setResults([]);
-    } finally {
-      setLoading(false);
-    }
-  };
+
+      setIsSearching(true);
+      setLoading(true);
+
+      try {
+        const res = await fetch(`/api/search?search=${debouncedSearchQuery}`);
+        const data = await res.json();
+
+        if (data.success) {
+          setResults(data.data);
+        } else {
+          setResults([]);
+        }
+      } catch (error) {
+        console.error("Error fetching search results:", error);
+        setResults([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchResults();
+  }, [debouncedSearchQuery]);
 
   return (
     <div>
@@ -64,7 +68,7 @@ export default function Home() {
           </div>
         )}
 
-        <SearchBar isSearching={isSearching} handleSearch={handleSearch} />
+        <SearchBar isSearching={isSearching} handleSearch={(e) => setSearchQuery(e.target.value)} />
 
         {isSearching && (
           <SearchResults results={results} />
