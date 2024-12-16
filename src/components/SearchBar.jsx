@@ -10,7 +10,7 @@ const SearchBar = ({ isSearching, handleSearch }) => {
         placeholder="Search"
         className="w-full h-[50px] pl-10 pr-4 rounded-lg border border-[#D7D7EA] shadow-md focus:ring-2 focus:ring-[#3063E6] focus:outline-none"
         style={{ boxShadow: "0px 4px 10px 0px #0000000D" }}
-        onFocus={handleSearch}
+        onChange={(e) => handleSearch(e)}
       />
 
       <Image
