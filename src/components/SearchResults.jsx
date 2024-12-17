@@ -34,7 +34,7 @@ const SearchResults = ({ results, isLoading }) => {
         results.length === 0 ? "justify-center" : ""
       }`}
     >
-      <div className="mt-10 flex flex-wrap justify-center gap-[11.5px]">
+      <div className=" mt-5 md:mt-10 flex flex-wrap justify-center gap-[11.5px]">
         {isLoading ? (
           <div className="flex justify-center items-center w-full h-[312px]">
             Loading...
@@ -43,17 +43,17 @@ const SearchResults = ({ results, isLoading }) => {
           results.map((item, index) => (
             <div
               key={index}
-              className="w-[312px] sm:w-[390px] sm:h-[312px] h-[236px] rounded-[18px] sm:p-[28px] p-[18px] bg-[#FFFFFF] shadow-md flex flex-col items-start"
+              className="w-[312px] sm:w-[390px] sm:h-[312px] h-[236px] rounded-[18px] p-[20.45px] sm:p-[28px] border-[0.86px] border-[#E1E1E1] bg-[#FFFFFF] shadow-md flex flex-col items-start"
             >
               <div className="flex gap-4 mb-2 sm:mb-4 flex-col items-start">
                 <Image
                   src={profile}
                   alt={`${item.name}'s profile`}
-                  className="sm:w-20 sm:h-20 w-16 h-16 rounded-full object-cover"
+                  className="sm:w-20 sm:h-20 w-[67px] h-[67px] rounded-full object-cover"
                 />
 
                 <div className="gap-2">
-                  <h2 className="text-[20px] sm:text-[37px] font-semibold">
+                  <h2 className="text-[27.7px] sm:text-[37px] font-semibold">
                     {item.first_name} {item.last_name}
                   </h2>
                   <div className="flex flex-row items-center gap-2">
@@ -67,24 +67,24 @@ const SearchResults = ({ results, isLoading }) => {
                 </div>
               </div>
 
-              <hr className="w-full border-t border-gray-300 my-4" />
+              <hr className="w-full border-t border-gray-300 my-2 md:my-4" />
 
               <div className="flex justify-between items-center w-full">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <Image src={phone} alt="phone" />
-                    <p className="text-sm text-gray-700">
+                    <Image src={phone} alt="phone" className="h-[11.2px] w-[11.2px]" />
+                    <p className="text-[11px] md:text-sm font-semibold">
                       {item.contact_number}
                     </p>
                   </div>
 
-                  <span className="text-[11.5px] text-[#AFAFAF]">
+                  <span className="text-[8.65px] md:text-[11.5px] text-[#AFAFAF] mt-1">
                     Available on phone
                   </span>
                 </div>
 
                 <button
-                  className="w-[120px] sm:w-[137px] h-11 px-4 py-2 bg-[#18181B] text-white text-sm rounded-lg"
+                  className="w-[103px] h-[37px] sm:w-[137px] sm:h-11 px-4 py-2 bg-[#18181B] text-white text-xs rounded-lg whitespace-nowrap"
                   onClick={() => handleFetchDetailsClick(item)}
                 >
                   Fetch Details
@@ -93,7 +93,7 @@ const SearchResults = ({ results, isLoading }) => {
             </div>
           ))
         ) : (
-          <Image src={empty} alt="No Result" />
+          <Image src={empty} alt="No Result" className="w-[292px] h-[278px]" />
         )}
       </div>
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -108,7 +108,7 @@ const SearchResults = ({ results, isLoading }) => {
         >
           <div>
             {/* Header */}
-            <DialogHeader className="mb-4 h-14 sm:w-[424px] text-left">
+            <DialogHeader className="mb-6 h-14 sm:w-[424px] text-left">
               <DialogTitle className="text-lg">
                 Fetch Details
               </DialogTitle>
@@ -118,14 +118,14 @@ const SearchResults = ({ results, isLoading }) => {
             </DialogHeader>
 
             <div>
-              <p className="text-sm">
+              <p className="text-sm font-medium">
                 <span>Name:</span> {selectedEmployee?.name || "N/A"}
               </p>
-              <p className="text-sm">
+              <p className="text-sm font-medium">
                 <span>Location:</span>
                 {selectedEmployee?.location || "N/A"}
               </p>
-              <p className="text-sm">
+              <p className="text-sm font-medium">
                 <span>Contact Number:</span>{" "}
                 {selectedEmployee?.contact_number || "N/A"}
               </p>
@@ -143,7 +143,7 @@ const SearchResults = ({ results, isLoading }) => {
             </div>
           </div>
 
-          <div className="flex justify-end">
+          <div className="md:flex justify-end hidden">
             <button
               className="px-4 py-2 bg-[#FFFFFF] text-black text-sm rounded-md border border-zinc-200"
               onClick={() => setIsDialogOpen(false)}
