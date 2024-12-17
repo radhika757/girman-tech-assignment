@@ -30,7 +30,7 @@ const SearchResults = ({ results, isLoading }) => {
 
   return (
     <div
-      className={`flex gap-10 w-[400px] sm:w-[800px] ${
+      className={`flex gap-10 w-[300px] sm:w-[800px] ${
         results.length === 0 ? "justify-center" : ""
       }`}
     >

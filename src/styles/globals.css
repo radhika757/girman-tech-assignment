@@ -18,9 +18,15 @@ body {
 }
 
 @media (max-width: 640px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
   body {
-    background: linear-gradient(180deg, #FFFFFF 31%, #B1CBFF 100%); 
+    background: var(--background), #B1CBFF;
     background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
 }
 
