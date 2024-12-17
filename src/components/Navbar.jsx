@@ -81,8 +81,8 @@ const Navbar = () => {
               <a
                 href="#"
                 onClick={() => handleLinkClick("search")}
-                className={`text-[12px] font-bold ${
-                  activeLink === "search" ? "text-[#3063E6] underline underline-offset-4" : ""
+                className={`text-[12px] ${
+                  activeLink === "search" ? "text-[#3063E6] underline underline-offset-4 font-bold" : ""
                 }`}
               >
                 SEARCH
@@ -90,8 +90,8 @@ const Navbar = () => {
               <a
                 href="https://girmantech.com/"
                 onClick={() => handleLinkClick("website")}
-                className={`text-[12px] font-bold ${
-                  activeLink === "website" ? "text-[#3063E6] underline underline-offset-4" : ""
+                className={`text-[12px] ${
+                  activeLink === "website" ? "text-[#3063E6] underline underline-offset-4 font-bold" : ""
                 }`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -101,8 +101,8 @@ const Navbar = () => {
               <a
                 href="https://www.linkedin.com/company/girmantech/posts/?feedView=all"
                 onClick={() => handleLinkClick("linkedin")}
-                className={`text-[12px] font-bold ${
-                  activeLink === "linkedin" ? "text-[#3063E6] underline underline-offset-4" : ""
+                className={`text-[12px] ${
+                  activeLink === "linkedin" ? "text-[#3063E6] underline underline-offset-4 font-bold" : ""
                 }`}
               >
                 LINKEDIN
@@ -110,8 +110,8 @@ const Navbar = () => {
               <a
                 href="mailto:contact@girmantech.com?subject=Inquiry&body=Hello, I would like to reach out regarding..."
                 onClick={() => handleLinkClick("contact")}
-                className={`text-[12px] font-bold ${
-                  activeLink === "contact" ? "text-[#3063E6] underline underline-offset-4" : ""
+                className={`text-[12px] ${
+                  activeLink === "contact" ? "text-[#3063E6] underline underline-offset-4 font-bold" : ""
                 }`}
               >
                 CONTACT

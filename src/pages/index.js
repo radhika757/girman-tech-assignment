@@ -61,7 +61,7 @@ export default function Home() {
       <Navbar />
       {/* Content */}
       <div
-        className={`flex flex-col items-center ${isSearching ? '' : 'gap-32'} transition-all duration-300 ${isSearching ? "mt-[100px]" : "mt-auto sm:justify-center justify-start h-screen"
+        className={`flex flex-col items-center ${isSearching ? '' : 'gap-24'} transition-all duration-300 ${isSearching ? "md:mt-[100px] mt-7" : "mt-auto sm:justify-center justify-start h-screen"
           }`}
         style={{ height: isSearching ? "auto" : "calc(100vh - 110px)" }}
       >
